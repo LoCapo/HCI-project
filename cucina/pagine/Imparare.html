@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <!--pagina responsive-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="../../js/CucinaImparare.js"></script>
+  <link rel="stylesheet" href="../../css/CucinaImparare.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  <script type="text/javascript" src="../../js/ControllaSessione.js"></script>
+  <script>controllaSessione();</script>
+  
+    <!--titolo-->
+  <title>Imparare</title>
+</head>
+
+<body onload="assegnaEventHandler();"> <!-- funzione  per calcolare il prezzo massimo visualizzato dello slider e le card da visualizzare-->
+
+  <!-- navbar-->
+  <nav class="sticky-top navbar-expand-lg navbar navbar-dark bg-dark mb-3">
+    <!--Logo-->
+    <a class="navbar-brand" href="../../index.html"><img src="../../assets/img/logo.png" width="60" height="60" alt="" /></a>
+
+
+    <!--bottone che apre la Navbar ridimensionata-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--Elementi navbar-->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!--l'id serve a far puntare queste voci di menu al pulsante della navbar ridimensionata-->
+      <ul class="navbar-nav mr-auto text-center">
+        <!--Home-->
+        <li class="nav-item">
+          <a class="nav-link" href="../HomeCucina.html">Home</a>
+        </li>
+        <!--Imparare-->
+        <li class="nav-item active">
+          <a class="nav-link" href="Imparare.html">Imparare</a>
+        </li>
+        <!--Cucinare-->
+        <li class="nav-item">
+          <a class="nav-link" href="Cucinare.html">Cucinare</a>
+        </li>
+        
+      </ul>
+      <!-- Tasto Logout -->
+      <div class="text-center">
+        <button class="btn btn-outline-danger my-2 my-sm-0" onclick="logout();">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+ <!--resto della pagina divisa in 2 colonne-->
+
+
+  <!--SIDEBAR-->
+  <div class="sidebar"> <!-- prima colonna divisa in 2 righe-->
+    <!--range slider-->
+
+    <div class="slidecontainer"> <!-- prima riga con il filtra per prezzo-->
+      <h2>Filtra per prezzo</h2>
+      <input type="range" min="0" max="" value="100" class="slider" id="myRange"> <!-- input type=range per fare lo slider. nel css uso appearance per togliere lo stile base e aggiungere il mio-->
+      <span>Prezzo massimo: </span><span id="demo"></span>
+    </div>
+
+    
+    <div class="filtra-radio" id="filtro"><!--seconda riga con il filtra radio-->
+      <h2>Filtra per categoria</h2>
+      <ul id="myUL">
+        <li>
+          <input type="radio" name="tipo" value="nessuno" id="nessuno" checked>
+          <label for="nessuno">Tutte</label>
+        </li>
+        <li>
+          <input type="radio" name="tipo" value="libro" id="libro">
+          <label for="libro">Libri</label>
+        </li>
+        <li>
+          <input type="radio" name="tipo" value="tutorial" id="tutorial">
+          <label for="tutorial">Tutorial</label>
+        </li>
+        <li>
+          <input type="radio" name="tipo" value="corso" id="corso">
+          <label for="corso">Corsi</label>
+        </li>
+      </ul> 
+    </div>
+  </div>
+
+
+  <!-- seconda colonna CONTENITORE CARDS-->
+
+  <div class="contenitore-cards" id="contenitore">  <!--id contenitore al container delle carte per poterle individuare nel javascript-->
+    <!--Prima carta   // class libro/tutorial/corso per filtro per categoria-->
+    <div class="card mb-3 libro" id="card0"> <!-- ogni card ha un id diverso-->
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard1.jpg" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">La grammatica dei sapori</h1>
+            <small class="text-muted">Libro - </small><small class="text-muted prezzo">25</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo">Chiunque voglia diventare davvero bravo in cucina dovrebbe leggere questo
+              libro.
+              Infatti, imparerete ad abbinare gli ingredienti tra loro e ad utilizzare diverse tecniche di cottura.
+              Questo libro
+              non contiene alcuna ricetta al suo interno, ma grazie alle conoscenze acquisite riuscirete a crearle voi
+              stessi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Seconda carta-->
+    <div class="card mb-3 libro" id="card1">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard2.jpg" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">Manuale dello chef</h1>
+            <small class="text-muted">Libro - </small><small class="text-muted prezzo">10.9</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo"> Il Manuale dello Chef Claudio Sadler è uno dei libri per imparare a
+              cucinare più
+              famosi ed importanti. L'autore ha trasformato la sua esperienza e le sue conoscenze in tantissimi consigli
+              utili ad
+              innalzare il livello del lettore.<br>
+              Il libro contiene descrizioni molto accurate di quasi tutti gli alimenti con
+              foto ed esempi.<br>
+              Si tratta di un manuale il cui obiettivo è rendere il lettore un esperto di cucina,quindi risulta più
+              adatto
+              a chi sa già muoversi in cucina. Per chi è alle prime armi il consiglio è quello di partire da un libro
+              più semplice e approcciare questo solo successivamente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Terza carta-->
+    <div class="card mb-3 libro" id="card2">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard3.jpg" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">La mia scuola di cucina</h1>
+            <small class="text-muted">Libro - </small><small class="text-muted prezzo">27.55</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo">Si tratta di uno dei primi libri di Jamie Oliver. 
+              E’ un libro che qualsiasi principiante amerà alla follia, che promette di insegnare 
+              a cucinare a chiunque in 24 ore. Nella prima parte del libro, vera e propria pietra 
+              miliare dei manuali di cucina, l’autore indica in modo chiaro tutti gli ingredienti 
+              fondamentali che ogni bravo cuoco dovrebbe avere in dispensa. La vera forza del libro, 
+              però, arriva quando Jamie inizia a utilizzare questi ingredienti nelle sue ricette, 
+              spiegate con precisione, professionalità, ma anche grande simpatia. Si tratta, quindi, 
+              di un libro di cucina per principianti che insegna tantissimo e che può far fare il salto 
+              di qualità a qualunque cuoco amatoriale.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Quarta carta-->
+    <div class="card mb-3 tutorial" id="card3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard4.png" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">GialloZafferano</h1>
+            <small class="text-muted">Tutorial - </small><small class="text-muted prezzo">0</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo"> GialloZafferano è uno dei siti Internet più famosi sul mondo 
+              della cucina. Oltre alle tante ricette proposte quotidianamente, questo portale offre anche una 
+              sezione denominata Scuola di Cucina all’interno della quale è possibile trovare una serie di 
+              lezioni pensate per coloro che hanno intenzione di avvicinarsi per la prima volta ai fornelli 
+              e non ha la minima idea di come cominciare. L’accesso alle lezioni è gratis con informazioni sia 
+              in formato testuale che fotografico. Inoltre, sono presenti anche dei video dettagliati e le 
+              specifiche sui tempi di preparazione e difficoltà del piatto.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Quinta carta-->
+    <div class="card mb-3 corso" id="card4">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard5.jpg" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">Gambero Rosso - La pizza</h1>
+            <small class="text-muted">Corso - </small><small class="text-muted prezzo">120</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo">Gambero Rosso è un sito Web che offre un vero e proprio store con corsi 
+              di cucina per appassionati. Nella sezione Corsi è possibile trovare diverse cose interessanti: corsi 
+              per professionisti, corsi per appassionati, eventi, libri e guide e un abbonamento alla rivista 
+              omonima per un anno. In questo caso il corso vi svelerà i segreti che vi permetteranno di sfornare una 
+              pizza perfetta sia dal punto di vista della forma che da quello del sapore. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Sesta carta-->
+    <div class="card mb-3 corso" id="card5">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard6.gif" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">Life Learning</h1>
+            <small class="text-muted">Corso - </small><small class="text-muted prezzo">49</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo"> Si tratta di un sito di corsi online all’interno del quale è possibile 
+              trovare anche corsi per imparare a cucinare.Nel sito è possibile trovare tantissimi corsi online i quali 
+              sono corredati da video in grado di spiegare come cimentarsi nella cottura di carni, pesce, torte, pizza, 
+              verdure e tanto altro. Tutti i corsi online sono a pagamento ed al termine della fruizione viene rilasciato 
+              un certificato finale.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Settima carta-->
+    <div class="card mb-3 tutorial" id="card6">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard7.jpg" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">CookAroundTv</h1>
+            <small class="text-muted">Tutorial - </small><small class="text-muted prezzo">0</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo">CookAround è un canale YouTube all’interno del quale è possibile trovare molti 
+              tutorial video i quali svelano come preparare ricette semplici e complesse in modo chiaro e divertente. Tutte 
+              le ricette sono spiegare in maniera dettagliato in modo da avvicinare alla cucina tutti coloro che non hanno 
+              mai preso una padella in mano. Inoltre, tutti i video presenti su questo canale sono disponibili gratuitamente 
+              e suddivisi per categoria: primi piatti, secondi piatti, dolci, ecc..
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Ottava carta-->
+    <div class="card mb-3 tutorial" id="card7">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard8.jpg" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">Chef Stefano Barbato</h1>
+            <small class="text-muted">Tutorial - </small><small class="text-muted prezzo">0</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo"> Anche in questo caso stiamo parlando di un canale YouTube il quale appartiene allo 
+              chef Stefano Barbato. Si tratta di un canale molto seguito che conta oltre 500 mila iscritti. Nei suoi video è possibile 
+              trovare tantissime ricette per preparare pietanze tipiche della tradizione italiana ma non solo. Tutte le ricette sono 
+              illustrate e spiegate in modo semplice e comprensibile anche per coloro che non hanno alcuna esperienza nel mondo culinario.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Nona carta-->
+    <div class="card mb-3 libro" id="card8">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard9.jpg" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">Guida alla grande cucina</h1>
+            <small class="text-muted">Libro - </small><small class="text-muted prezzo">45.6</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo">In questo manuale troverete tanta cultura, anche in questo caso non proprio accessibile a tutti. 
+              Infatti, questo libro raccoglie insegnamenti dell’alta cucina, trasmessi in una serie di ricette della tradizione. Si tratta 
+              di una particolare chicca da avere nella libreria per coloro che sono già avanti con la cucina e che puntano a raffinare le 
+              proprie abilità da cuoco. La soddisfazione nel realizzare i piatti presenti nel libro, ripagherà l’impegno nel realizzare 
+              queste spesso difficilissime ricette.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Decima carta-->
+    <div class="card mb-3 corso" id="card9">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard10.jpg" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">Club Academy - Pasticceria di base</h1>
+            <small class="text-muted">Corso - </small><small class="text-muted prezzo">99</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo">Club Academy è semplicemente una scuola di cucina disponibile online. Raccoglie il meglio delle 
+              accademie di cucina e di pasticceria curate da illustri chef e maestri pasticceri: un vero club per appassionati, dilettanti e 
+              professionisti. Nel corso "pasticceria di base" troverai un insegnamento ricco e completo, rivolto al mondo della pasticceria. 
+              Il corso offre, a chiunque voglia apprendere in modo veloce ma esaustivo, 3 corsi elaborati in chiave didattica, comprendenti 
+              oltre 60 lezioni in versione digitale.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Undicesima carta-->
+    <div class="card mb-3 corso" id="card10">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="../../assets/img/cucina/ImparareCard11.png" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">Diventa Chef</h1>
+            <small class="text-muted">Corso - </small><small class="text-muted prezzo">69</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo"> Diventa Chef è una scuola di cucina completamente online che ti insegnerà a cucinare come un grande
+              chef. Qui troverai una serie di corsi che innalzeranno notevolmente le tue abilità in cucina. Ogni corso può essere acquistato 
+              singolarmente ed è accessibile a un prezzo ridotto, ma per una conoscenza a tutto tondo è consigliato seguirne più di uno.  
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

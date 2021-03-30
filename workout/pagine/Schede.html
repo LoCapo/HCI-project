@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title> Schede </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <!-- per rendere il sito responsive-->
+  
+    <!-- mio foglio js-->
+    <script src="../../js/WorkoutSchede.js"></script>
+
+     <!--file css miei e di bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/WorkoutSchede.css">
+  
+  
+    
+    <!-- JQuery e javascript per la navbar ridimensionata-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>      
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+
+      <script type="text/javascript" src="../../js/ControllaSessione.js"></script>
+      <script>controllaSessione();</script>
+  
+  </head>
+
+<body>
+
+  <!--PRIMA Navbar-->
+
+  <!-- sticky top la tiene ferma in alto anche mentre scrollo-->
+  <nav id="nav-fixed" class="sticky-top navbar-expand-lg navbar navbar-dark bg-dark shadow-lg rounded mt-0">
+
+    <!--Logo-->
+    <a class="navbar-brand" href="../../index.html">
+      <img src="../../assets/img/logo.png" width="60" height="60" alt="">
+      <!--bisogna mettere il css inline e impostare la larghezza a 100% per resndere l immagine responsive-->
+    </a>
+
+    <!--bottone che apre la Nvbar ridimensionata-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--sezioni della Navbar-->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto text-center">
+        <li class="nav-item">
+          <a class="nav-item nav-link" href="../HomeWorkout.html">Home </a>
+          <!-- <span class="sr-only">(current)</span> -->
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link" href="Esercizi.html">Esercizi</a>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link active" href="Schede.html">Schede</a>
+          <!--ml sta per margin left (spacing in bootstrap)-->
+
+        </li>
+      </ul>
+      <!-- Tasto Logout -->
+      <div class="text-center">
+        <button class="btn btn-outline-danger my-2 my-sm-0" onclick="logout();">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+
+  
+  <!-- questa si deve muovere quando scrollo-->
+  <nav id="nav-hide" class="navbar-expand-lg navbar navbar-dark bg-dark">
+    <!--padding solo per verificare la grafica dei due navbar . non serve al risultato finale-->
+
+    <!--bottone che apre la Nvbar ridimensionata-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--sezioni della Navbar-->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+      <!--l id mi serve per potermi riferire a questa navbar nel bottone della navbar ridimensionata-->
+
+     <!--nella navbar metto solo la casella cerca del filtro-->
+      <ul class="navbar-nav mr-auto text-center">
+        <li>                                               <!-- la funzione viene triggerata quando scrivo qualcosa nel search-->
+          <input class="search" type="text" id="myInput" onkeyup="myFunction()"  placeholder="Cerca per nome scheda">
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!--finite le navbar metto il titolo-->
+  <h1 class="title text-center text-light ">Schede</h1>
+
+
+
+
+<!-- fuori dalla navbar vado a mettere l'elenco(in questo caso sara di card) tra cui filtrare.-->
+<ul id="myUL">
+
+  <!--voce 1-->
+  <li>
+    <div class="card m-4">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="../../assets/img/workout/SchedeCard1.jpg" class="card-img image" alt="..."> 
+
+        <div class="overlay">
+         
+            
+            <table class="table">
+              <tr><td>Esercizio</td><td> Serie </td><td>riposo</td></tr>
+              <tr><td> Knee push up </td><td>1 x 20</td><td> 30 sec</td></tr>
+              <tr><td> push up</td><td>1 x 10</td><td> 30 sec</td></tr>
+              <tr><td> Diamond Push up </td><td>1 x 10</td><td> 30 sec</td></tr>
+              <tr><td> Push up stretti</td><td>1 x 10</td><td> 30 sec</td></tr>
+              <tr><td> Wide Push up </td><td>1 x 10</td><td> 30 sec</td></tr>
+              <tr><td> Tap Shoulder</td><td>1 x 10</td><td> 30 sec</td></tr>
+              <tr><td> Archer Push up </td><td>1 x 10</td><td> 30 sec</td></tr>
+              <tr><td> Push up stretti </td><td>1 x 10</td><td> 30 sec</td></tr>
+              <tr><td> Wide Push up con isometria </td><td>1 x 10</td><td> 30 sec</td></tr>
+              <tr><td> Knee Diamond Push up</td><td>1 x 10</td><td> 30 sec</td></tr>
+              <tr><td> Archer Push up </td><td>1 x 10</td><td> 30 sec</td></tr>
+              <tr><td> Knee Diamond Push up</td><td>1 x 10</td><td> 30 sec</td></tr>
+              </table>
+  
+           
+        </div>
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><a href="https://www.youtube.com/watch?v=r_PCrbjPRAs" target="_blank">Petto</a></h5>
+          <p class="card-text">Ecco come sviluppare i pettorali da casa, senza attrezzature e in poco tempo. <br>
+          il circuito andra svolto una volta sola in quanto composto da molti esercizi con poco recupero tra di loro
+        </p>
+          <p class="card-text"><small class="text-muted">Fonti: canale YouTube Multiversa Fitness</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+
+<!--voce 2-->
+  <li>
+    <div class="card m-4">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="../../assets/img/workout/SchedeCard2.jpg" class="card-img image" alt="...">
+
+        <div class="overlay">
+         
+            
+            <table class="table">
+              <tr><td>Esercizio</td><td> Attività </td><td>Riposo</td></tr>
+              <tr><td> Pull Down </td><td>30 sec</td><td>30 sec</td>
+              <tr><td> Back Widow </td><td>30 sec</td><td>30 sec</td>
+              <tr><td> Reverse Snow Angel</td><td>30 sec</td><td>30 sec</td>
+              <tr><td> Pull Row </td><td>30 sec</td><td>30 sec</td>
+              <tr><td> Superman Pulls </td><td>30 sec</td><td>30 sec</td>
+              
+              </table>
+  
+            </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><a href="https://www.youtube.com/watch?v=yGWdIBjZ_iE" target="_blank">Schiena </a></h5>
+          <p class="card-text">Per questi esercizi mirati a sviluppare i muscoli della schiena c'è bisogno di solamente un tappetino e un asciugamano. 
+                               Perche risulti efficace il circuito dovrebbe essere ripetuto almeno 3 volte con 1 minuto di pausa tra le serie.
+          </p>
+          <p class="card-text"><small class="text-muted">Fonti: canale YouTube Dennis Call&agrave</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+
+
+<!--voce 3-->
+<li>
+  <div class="card m-4">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="../../assets/img/workout/SchedeCard3.jpg" class="card-img image" alt="...">
+
+      <div class="overlay">
+        
+          
+          <table class="table">
+            <tr><td>Esercizio</td><td> attivita </td><td>riposo</td></tr>
+            <tr><td>Affondi</td><td> 30 sec </td><td>30 sec</td></tr>
+            <tr><td>Jump Lunges</td><td> 30 sec </td><td>30 sec</td></tr>
+            <tr><td>Split Squat</td><td> 30 sec </td><td>30 sec</td></tr>
+            <tr><td>Squat</td><td> 30 sec </td><td>30 sec</td></tr>
+            <tr><td>Jump Squat</td><td> 30 sec </td><td>30 sec</td></tr>
+            <tr><td>Hold</td><td> 30 sec </td><td>30 sec</td></tr>
+            </table>
+
+             </div>
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.youtube.com/watch?v=cFgcNKlksII" target="_blank">Gambe</a></h5>
+        <p class="card-text">Circuito per le gambe che possiamo eseguire benissimo a casa visto che non necesita di attrezzatura. gli esercizi non sono divisi in serie in questo caso ma in tempo di lavoro e tempo di riposo. <br>
+        il circuito riportato in tabella va eseguito almeno 5 volte perche risulti efficace. <br> riposare 1 minuto ogni volta che si completa una serie</p>
+        <p class="card-text"><small class="text-muted">Fonti: canale YouTube Street Gorilla</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+
+<!--voce 4-->
+<li>
+  <div class="card m-4">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="../../assets/img/workout/SchedeCard4.jpg" class="card-img image" alt="...">
+
+      <div class="overlay">
+       
+          
+          <table class="table">
+            <tr><td>Esercizio</td><td> Attivit&agrave </td><td>Riposo</td></tr>
+            <tr><td> Skip Alto con Stop </td><td>30 sec</td><td> 10 sec</td></tr>
+            <tr><td> Calciata Dietro </td><td>30 sec</td><td> 10 sec</td></tr>
+            <tr><td> Jump e Skip  </td><td>30 sec</td><td> 10 sec</td></tr>
+            <tr><td> Frog Walk</td><td>30 sec</td><td> 10 sec</td></tr>
+            <tr><td> Balzi laterali alternati </td><td>30 sec</td><td> 10 sec</td></tr>
+            <tr><td> Side to Side </td><td>30 sec</td><td> 10 sec</td></tr>
+            <tr><td> Skip con Clap </td><td>30 sec</td><td> 10 sec</td></tr>
+            <tr><td> Balzi laterali alternati </td><td>30 sec</td><td> 10 sec</td></tr>
+            <tr><td> Side Jump Lounge </td><td>30 sec</td><td> 10 sec</td></tr>
+            <tr><td> Jump Squat </td><td>30 sec</td><td> 10 sec</td></tr>
+            </table>
+
+         </div>
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.youtube.com/watch?v=a8mjQvKTnbs" target="_blank">Circuito Cardio</a></h5>
+        <p class="card-text">Con questo circuito sara possibile bruciare calorie e lavorare sull'attivita cardio circolatoria anche non disponendo di grandi spazi ne attrezzi. <br>
+        Ideale quindi per chi si vuole allenare da casa. <br>
+        Si può ripetere il circuito più volte a seconda della propria resistenza.
+      </p>
+        <p class="card-text"><small class="text-muted">Fonti: canale YouTube IMPACTOTRAINING</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+
+<!--voce 5-->
+<li>
+  <div class="card m-4">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="../../assets/img/workout/SchedeCard5.jpg" class="card-img image" alt="...">
+
+      <div class="overlay">
+       
+          
+          <table class="table">
+            <tr><td>Esercizio</td><td> Attivit&agrave </td><td>Riposo</td></tr>
+            <tr><td> Scissor Kick </td><td>30 sec</td><td> NO Rest </td></tr>
+            <tr><td> Leg Raises </td><td>30 sec</td><td> NO Rest </td></tr>
+            <tr><td> Wipers </td><td>30 sec</td><td> NO Rest</td></tr>
+            <tr><td> Reverse Crunch </td><td>30 sec</td><td>30 sec </td></tr>
+            <tr><td> Sit Up </td><td>30 sec</td><td>NO Rest </td></tr>
+            <tr><td> Crunch </td><td>30 sec</td><td>NO Rest </td></tr>
+            <tr><td> Tocco delle punte </td><td>30 sec</td><td>NO Rest</td></tr>
+            <tr><td> Tocco dei talloni </td><td>30 sec</td><td>30 sec </td></tr>
+            <tr><td> Leg Raises </td><td>30 sec</td><td> NO Rest </td></tr>
+            <tr><td> Crunch </td><td>30 sec</td><td> NO Rest</td></tr>
+            <tr><td> Plank  </td><td>1 sec</td><td> NO Rest </td></tr>
+            
+            </table>
+
+         
+      </div>
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.youtube.com/watch?v=pcSITRlz08g" target="_blank">Addominali</a></h5>
+        <p class="card-text">Circuito rapido e che non richiede attrezzi o spazi eccessivi per sviluppare gli addominali. <br>
+        si consiglia di eseguire il circuito una sola volta rispettando rigorosamente i tempi di recupero. <br> 
+        A meno che non vi troviate ad un livello avanzato, in quel caso potete o abbassare i recuperi o aumentare il tempo di attivit&agrave</p>
+        <p class="card-text"><small class="text-muted">Fonti: canale YouTube Street Gorilla</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+
+<!--voce 6-->
+<li>
+  <div class="card m-4">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="../../assets/img/workout/SchedeCard6.jpg" class="card-img image" alt="...">
+
+      <div class="overlay">
+        
+          
+          <table class="table">
+            <tr><td>Esercizio</td><td> Attivit&agrave </td><td>riposo</td></tr>
+            <tr><td> Esercizio 1 </td><td>30 sec</td><td>10 sec</td></tr>
+            <tr><td> Esercizio 2</td><td>30 sec</td><td>10 sec</td></tr>
+            <tr><td> Esercizio 3</td><td>30 sec</td><td>10 sec</td></tr>
+            </table>
+
+         </div>
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.youtube.com/watch?v=WmjbvRmuQiA" target="_blank">Tricipiti</a></h5>
+        <p class="card-text">Anche in questo caso abbiamo bisogno solamente di un asciugamano per sviluppare i nostri tricipiti <br>
+        si consiglia di eseguire il circuito 3 volte senza pause</p>
+        <p class="card-text"><small class="text-muted">Fonti: canale YouTube IMPACTOTRAINING</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+
+<!--voce 7-->
+<li>
+  <div class="card m-4">    <!--classe card con 3 di margine sotto-->
+  <div class="row no-gutters"> 
+    <div class="col-md-4">
+      <img src="../../assets/img/workout/SchedeCard7.jpg" class="card-img image" alt="...">
+
+      <!--la classe che permette l'apparizione della slide-->
+      <div class="overlay">
+        
+          
+          <table class="table">
+            <tr><td>Esercizio</td><td> Attivit&agrave </td><td>riposo</td></tr>
+            <tr><td> Curl con asciugamano isometrico </td><td>10 sec</td><td>NO Rest</td></tr>
+            <tr><td> Curl con asciugamano isometrico in chiusura </td><td>10 sec</td><td>NO Rest</td></tr>
+            <tr><td> Curl con cassa d'acqua </td><td>10 sec</td><td>1 min</td></tr>
+            </table>
+
+         
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.youtube.com/watch?v=1bZ98SzsDnc" target="_blank">Bicipiti</a></h5>
+        <p class="card-text">I bicipiti sono senza dubbio il muscolo piu difficile da allenare se non si disponde di neanche un manubrio. Questo circuito ci viene in aiuto. <br>
+        Lavorando in isometria riusciamo comunque a sviluppare le nostre braccia. Tutto quello di cui abbiamo bisogno è un asciugamano e una cassa d'acqua.</p>
+        <p class="card-text"><small class="text-muted">Fonti: canale YouTube Umberto Miletto</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+
+<!--voce 8-->
+<li>
+  <div class="card m-4">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="../../assets/img/workout/SchedeCard8.jpg" class="card-img image" alt="...">
+     
+      <!--la classe che permette l'apparizione della slide-->
+      <div class="overlay">
+        
+          
+          <!-- la tabella con esercizi serie e ripetizioni, messa nella slide-->
+          <table class="table">
+            <tr><td>Esercizio</td><td> Serie </td><td>riposo</td></tr>
+            <tr><td> Handstand push up </td><td>5 x 5/8</td><td>NO Rest</td></tr>
+            <tr><td> Handstand push up su rialzo</td><td>5 x 5/8</td><td>NO Rest</td></tr>
+            <tr><td> Pike push up </td><td> 5x 5/8</td><td> NO Rest</td></tr>
+            <tr><td> Dips </td><td> 5x 5/8</td><td> NO Rest</td></tr>
+            <tr><td> Lean Plank </td><td> 5x 5/8</td><td> NO Rest</td></tr>
+
+            </table>
+          
+
+          
+      </div>
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.youtube.com/watch?v=86WOvjPOito" target="_blank">Spalle</a></h5>
+        <p class="card-text">Circuito spalle composto da 5 esercizi in superset che a seconda del proprio livello puo essere ripetuto piu volte. <br>
+        per eseguire le Dips da casa bastera avvicinare due sedie con gli schienali uno di fronte all'altro</p>
+        <p class="card-text"><small class="text-muted">Fonti: canale YouTube Giampaolo Calvaresi</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+
+
+</ul>
+
+
+</body>
+
+</html>
