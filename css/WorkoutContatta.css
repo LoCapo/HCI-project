@@ -1,0 +1,78 @@
+
+
+ /*contiene la navbar dei menu fissa sopra*/
+ #nav-fixed
+{   
+    z-index: 5;  
+}
+
+body {
+  background-image: url(../assets/img/workout/pattern.png);
+  background-attachment: fixed;
+}
+
+
+#contenitore{
+  top:86px;
+  position: relative; /*rispetto alla pagina*/
+  width:85%; /*della pagina intera*/
+  margin-left:15%; /*la larghezza della sidebar*/
+}
+
+.title{
+  margin-top: 5rem;
+  font-size: 3rem;
+  font-weight: 300;
+    line-height: 1.2;
+    text-shadow: 0px 0px black;
+}
+
+.container{
+  width:100%;
+  height:auto;
+  margin-top:10%;
+}
+
+
+.col{
+  margin-top: 10px;
+}
+
+.form-check{
+  background-color: white;
+}
+
+
+
+p{
+  background-color: teal;
+  color: white;
+}
+
+
+
+
+/*da mobile o ridimensionato la sidebar diventa topbar sotto quella originale*/
+/*IMPORTANTE: a seconda del numero di indici che decidiamo di metterci in fase finale vanno cambiate solo:
+            -margin top del contenitore
+            */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: fixed;  /*deve stare ferma anche quando va su*/
+    z-index: 2;       /*titolo e zona dinamica devono passargli dietro on davanti*/
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+
+  #contenitore{
+    top:125px; /*devo aumentare questo valore perche devo fare spazio per la sidebar risalita*/
+    position: relative; /*rispetto alla pagina*/
+    width:100%; /*quando la sidebar va su il contenitore si prende tutta la larghezza di pagina*/
+    margin-left:0%; /*sidebar che è andata su*/
+  }
+}
+
+
+
