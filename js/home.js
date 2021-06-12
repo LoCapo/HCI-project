@@ -108,9 +108,11 @@ function mostra_login(e)
             <div class="col-auto">
                 <div class="input-group mb-1 mt-3">
                     <div class="input-group-prepend">
-                        <div>Non hai un account? Effettua la <a href="#" id="registr-button">registrazione</a>!</a>
+                      <div>Password dimenticata? Clicca <a href="#" id="forgot-button">qui</a>!</a></div>
+                    </div> 
+                    <div class="input-group-prepend">
+                        <div>Non hai un account? Effettua la <a href="#" id="registr-button">registrazione</a>!</a></div>
                     </div>
-                </div>
             </div>
         </div>
     `;
@@ -133,6 +135,49 @@ function mostra_login(e)
     nav_button.innerHTML = "Login";
 }
 
+function mostra_recuperapassword(e) 
+{
+    var item = document.getElementById("form-login");                   // prendo l'elemento form
+    item.setAttribute("name", "recupera-password");                     // cambio il nome della form
+    item.setAttribute("action", ""); 
+    //cambio html con i campi del login
+    item.innerHTML = `
+        <div>Ti invieremo una mail con le istruzioni per recuperare la password.</div><br>
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">email</div>
+                    </div>
+                    <input type="text" class="form-control" name="email" placeholder="name@example.com">
+                </div>
+            </div>
+            <div class="input-group mb-1 mt-3"> 
+             <div class="input-group-prepend">
+                <!-- Bottone che triggera le funzioni javascript per il cambiamento della form mostra_registrazione-->
+                <div>Non hai un account? Effettua la <a href="#" id="registr-button">registrazione</a>!</a></div>
+             </div>
+           </div>
+        </div>
+    `;
+    
+    //!!importante (riga 108) creo bottone effettua registrazione per ripassare alla vista della registrazione nella form
+
+    //aggiorno eventi sui componenti creati
+    assegnaEvent();
+
+    //cambio testo nel tasto submit della form
+    var button = document.getElementById("form-submit");
+    button.innerHTML = "Invia";
+
+    //cambio testo del titolo del modal
+    var title = document.getElementById("loginModalLabel");
+    title.innerHTML = "Recupera Password";
+
+    //cambio testo del bottone della navbar
+    //var nav_button = document.getElementById("nav-button")
+    //nav_button.innerHTML = "Login";
+}
 //funzione che assegna gli eventi per cambiamento form login-registrazione
 function assegnaEvent()
  {
@@ -146,6 +191,10 @@ function assegnaEvent()
     var registr_button = document.getElementById("registr-button");         // prendo elemento per switchare tra le form (link "effettua la registrazione" nel form login)
     if (registr_button != null)                                             // SE ESISTE quel bottone (esiste solo se il form è di login)
         registr_button.addEventListener("click", mostra_registrazione);     // assegno la funzione per mostrare il form di registrazione nel form di login
+    
+    var forgot_button = document.getElementById("forgot-button");          // prendo elemento per switchare tra le form (link "clicca qui" per recuperare password nel form login)
+    if (forgot_button != null)                                             // SE ESISTE quel bottone (esiste solo se il form è di login)
+        forgot_button.addEventListener("click", mostra_recuperapassword);  // assegno la funzione per mostrare il form di recupero password nel form di login
 
     //Solo un bottone alla volta è presente nella pagina, uno di questi due IF fallirà sempre (li ho messi nella stessa funzione per analogia di funzionamento)
 } 
