@@ -7,6 +7,8 @@
 
         <!--css di bootstrap-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!--link per immagine occhiolino password-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
         <!-- Caricamento di jquery bootstrap dopo il caricamento degli elementi html -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -72,7 +74,7 @@
                     <!-- le text area nel corpo-->
                     <div class="modal-body">
                         <!-- la form manda i dati al file php che comunica con il DB-->
-                        <form id="form-login" action="php/validateLogin.php" method="POST" name="form-login">
+                        <form id="form-login" class="needs-validation" action="php/validateLogin.php" method="POST" name="form-login" onsubmit="">
                             <!-- Form di Login (per default) poi cambiato da funzioni javascript tramite id-->
                             <div class="form-row align-items-center">
                                 <div class="col-auto">
@@ -80,7 +82,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">email</div>
                                         </div>
-                                        <input type="email" class="form-control" name="email" placeholder="name@example.com">
+                                        <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -88,8 +90,12 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">Password</div>
                                         </div>
-                                        <input type="password" class="form-control" size="25" name="password"
-                                            placeholder="Your secret password" minlength="5">
+                                        <input type="password" id="password" class="form-control" size="25" name="password"
+                                            placeholder="La tua password" minlength="5" required>
+                                        <span class="eye" onclick="mostrapassword()">
+                                            <i id="hide1" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye "></i>
+                                            <i id="hide2" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye-slash"></i>
+                                        </span>  
                                     </div>
                                 </div>
                                 <div class="input-group mb-1 mt-3">

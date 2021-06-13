@@ -14,7 +14,7 @@ function mostra_registrazione(e)
                     <div class="input-group-prepend">
                         <div class="input-group-text">Name</div>
                     </div>
-                    <input type="text" class="form-control" name="name" placeholder="Alice">
+                    <input type="text" class="form-control" name="name" placeholder="Alice" required>
                 </div>
             </div>
             <div class="col-auto">
@@ -22,7 +22,7 @@ function mostra_registrazione(e)
                     <div class="input-group-prepend">
                         <div class="input-group-text">Surname</div>
                     </div>
-                    <input type="text" class="form-control" name="surname" placeholder="Rossi">
+                    <input type="text" class="form-control" name="surname" placeholder="Rossi" required>
                 </div>
             </div>
             <div class="col-auto">
@@ -30,26 +30,37 @@ function mostra_registrazione(e)
                     <div class="input-group-prepend">
                         <div class="input-group-text">e-mail</div>
                     </div>
-                    <input type="email" class="form-control" name="email" placeholder="alice@example.com">
+                    <input type="email" class="form-control" name="email" placeholder="alice@example.com" required>
                 </div>
+            </div>
+            <div class="alert alert-primary">
+             Inserire una password con almeno 5 caratteri di cui una lettera maiuscola, una minuscola, un numero e un simbolo.
             </div>
             <div class="col-auto">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <div class="input-group-text">Password</div>
                     </div>
-                    <input type="password" class="form-control" size="20" name="password" placeholder="Your secret password" minlength="5"
-                    onkeyup="validaPsw1();">
+                    <input type="password" id="password" class="form-control" size="20" name="password" placeholder="La tua password" minlength="5"
+                    onkeyup="validaPsw1();" required>
+                    <span class="eye" onclick="mostrapassword()">
+                     <i id="hide1" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye "></i>
+                     <i id="hide2" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye-slash"></i>
+                    </span>
                 </div>
             </div>
-            <div id="password-ok" class="badge"></div>
+            <div id="password-ok" style="margin-bottom:10px;" class="badge"></div>
             <div class="col-auto">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <div class="input-group-text">Confirm password</div>
                     </div>
-                    <input type="password" class="form-control" name="confirm" size="20" placeholder="Confirm password"
-                    onkeyup="validaPsw2();">
+                    <input type="password" id="confpassword" class="form-control" name="confirm" size="20" placeholder="Conferma password"
+                    onkeyup="validaPsw2();" required>
+                    <span class="eye" onclick="mostraconfermapassword()">
+                     <i id="hide11" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye "></i>
+                     <i id="hide22" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye-slash"></i>
+                  </span> 
                 </div>
             </div>
             <div id="password-match" class="alert" role="alert"></div>
@@ -94,7 +105,7 @@ function mostra_login(e)
                     <div class="input-group-prepend">
                         <div class="input-group-text">email</div>
                     </div>
-                    <input type="text" class="form-control" name="email" placeholder="name@example.com">
+                    <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
                 </div>
             </div>
             <div class="col-auto">
@@ -102,7 +113,11 @@ function mostra_login(e)
                     <div class="input-group-prepend">
                         <div class="input-group-text">Password</div>
                     </div>
-                    <input type="password" class="form-control" size="25" name="password" placeholder="Your secret password" minlength="5">
+                    <input type="password" id="password" class="form-control" size="25" name="password" placeholder="La tua password" minlength="5" required>
+                    <span class="eye" onclick="mostrapassword()">
+                      <i id="hide1" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye "></i>
+                      <i id="hide2" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye-slash"></i>
+                    </span> 
                 </div>
             </div>
             <div class="col-auto">
@@ -139,19 +154,21 @@ function mostra_recuperapassword(e)
 {
     var item = document.getElementById("form-login");                   // prendo l'elemento form
     item.setAttribute("name", "recupera-password");                     // cambio il nome della form
-    item.setAttribute("action", ""); 
+    item.setAttribute("action", "#");
+    item.setAttribute("onsubmit", "inviamail();"); 
     //cambio html con i campi del login
     item.innerHTML = `
-        <div>Ti invieremo una mail con le istruzioni per recuperare la password.</div><br>
+        <div class="alert alert-primary">Ti invieremo una mail con le istruzioni per recuperare la password.</div>
         <div class="form-row align-items-center">
             <div class="col-auto">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <div class="input-group-text">email</div>
                     </div>
-                    <input type="text" class="form-control" name="email" placeholder="name@example.com">
+                    <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
                 </div>
             </div>
+            <div class="alert alert-success" id="emailinviata">Ti abbiamo inviato una mail. Controlla la tua casella di posta.</div>
             <div class="input-group mb-1 mt-3"> 
              <div class="input-group-prepend">
                 <!-- Bottone che triggera le funzioni javascript per il cambiamento della form mostra_registrazione-->
@@ -179,6 +196,45 @@ function mostra_recuperapassword(e)
     //nav_button.innerHTML = "Login";
 }
 //funzione che assegna gli eventi per cambiamento form login-registrazione
+
+function mostrapassword(){  /*Funzione per mostrare o nascondere la password tramite occhiolino*/
+    var x=document.getElementById("password");
+    var y=document.getElementById("hide1");
+    var z=document.getElementById("hide2");
+    if(x.type==='password'){
+      x.type="text";
+      y.style.display="none";
+      z.style.display="block";
+    }
+    else{
+      x.type="password";
+      y.style.display="block";
+      z.style.display="none";
+    }
+
+}
+
+function mostraconfermapassword(){  /*Funzione per mostrare o nascondere la password tramite occhiolino*/
+    var x=document.getElementById("confpassword");
+    var y=document.getElementById("hide11");
+    var z=document.getElementById("hide22");
+    if(x.type==='password'){
+      x.type="text";
+      y.style.display="none";
+      z.style.display="block";
+    }
+    else{
+      x.type="password";
+      y.style.display="block";
+      z.style.display="none";
+    }
+
+}
+
+function inviamail(){
+    var x=document.getElementById("emailinviata");  
+    x.style.display="block";
+}
 function assegnaEvent()
  {
 
@@ -253,15 +309,15 @@ function validaPsw1(){  //attivata onKeyUp
         badge.classList.remove("badge-warning");    //tolgo classe per badge giallo
         badge.classList.remove("badge-success");    //tolgo classe per badge verde
         badge.classList.add("badge-danger");        //aggiungo classe per badge rosso
-        badge.innerHTML = "Your passwork is weak!"
+        badge.innerHTML = "Password debole"
         return;
     }
 
-    if (secuity <= 4) {
+    if (secuity <= 4 && psw.length>=5) {
         badge.classList.remove("badge-danger");     //tolgo classe per badge rosso
         badge.classList.remove("badge-success");    //tolgo classe per badge verde
         badge.classList.add("badge-warning");       //aggiungo classe per badge giallo
-        badge.innerHTML = "Your passwork is ok"
+        badge.innerHTML = "Password ok"
         return;
     }
 
@@ -269,7 +325,7 @@ function validaPsw1(){  //attivata onKeyUp
         badge.classList.remove("badge-warning");    //tolgo classe per badge giallo
         badge.classList.remove("badge-danger");     //tolgo classe per badge rosso
         badge.classList.add("badge-success");       //aggiungo classe per badge verde
-        badge.innerHTML = "Your passwork is secure!"
+        badge.innerHTML = "Password sicura"
         return;
     }
 }
@@ -291,12 +347,12 @@ function validaPsw2() {
     if (psw1 !== psw2) {
         alert.classList.remove("alert-success");    //tolgo classe per alert verde
         alert.classList.add("alert-danger");        //aggiungo classe per alert rosso
-        alert.innerHTML = "Passwords does not match!";
+        alert.innerHTML = "Le password non combaciano!";
     }
     else{
         alert.classList.remove("alert-danger");     //tolgo classe per alert rosso
         alert.classList.add("alert-success");       //aggiungo classe per alert verde
-        alert.innerHTML = "Passwords match!"
+        alert.innerHTML = "Le password combaciano!"
     }
 }
 
