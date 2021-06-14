@@ -2,6 +2,10 @@
     display:none;
 }
 
+.m-xl-3 {
+    margin: 0rem!important;
+}
+
 #emailinviata{
     display:none;
 }
