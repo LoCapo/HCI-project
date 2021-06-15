@@ -24,12 +24,24 @@ h2{                         /*titoli delle portate nella sezione delle ricette*/
     margin-left:0%;
     color: #FCFDFE;
 }
-h1 a{                     /*stile dei link ancora*/
+
+a h1{                     /*stile dei link ancora*/
     color: white;
 }
-h1 a:hover{               
+
+a h1:hover{               
     text-decoration: none; 
     color: black;  
+}
+
+a img{               
+    text-decoration: none; 
+    color: black;  
+}
+
+#linkportate{
+    text-decoration: none;
+    color:black;
 }
 
 .tab h4{                     /*titoli nelle tabelle di info*/
