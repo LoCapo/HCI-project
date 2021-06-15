@@ -28,7 +28,7 @@ function assegnaEventi(){
 
 //funzione che cambia il bottone in base al click
 function toggleButton(e){
-    if(this.innerText.indexOf("Compara") > -1){   //se è presente "Add"
+    if(this.innerText.indexOf("Dettagli") > -1){   //se è presente "Add"
         this.innerText = "Rimuovi";  //switch sul testo del bottone
 
         //cambio grafica bottone
@@ -37,7 +37,7 @@ function toggleButton(e){
     }
 
     else{
-        this.innerText = "Compara"; //switch sul testo del bottone
+        this.innerText = "Dettagli"; //switch sul testo del bottone
 
         //cambio grafica bottone
         this.classList.remove("btn-light");
@@ -66,7 +66,7 @@ function toggleTable(current){
             
             resizeTable(); //funzione per allineamento figli in base alla quantità
             
-            if(table.children.length > 1){ //se c'è più di un figlio scorro per far vedere all'utente la tabella
+            if(table.children.length > 0){ //se c'è un figlio scorro per far vedere all'utente la tabella
                 table.scrollIntoView({behavior: "smooth"}); //behavior:smooth rende lo scorrimento "lento" e non istantaneo
             }
             return;
@@ -106,7 +106,7 @@ function toggleTable(current){
     </div>
     `
     resizeTable();
-    if(table.children.length > 1){
+    if(table.children.length > 0){
         table.scrollIntoView({behavior: "smooth"});
     }
 }

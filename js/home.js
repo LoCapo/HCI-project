@@ -130,6 +130,23 @@ function mostra_login(e)
                     </div>
             </div>
         </div>
+       </div>
+        <br>
+        <h5 style="text-align: center;">Oppure</h5>
+        <div class="row"> 
+         <div class="col-sm-12" align="center">
+            <!--BOTTONE GOOGLE-->  
+            <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+            <a href="#">
+            <div class="google-btn">
+              <div class="google-icon-wrapper">
+                <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+              </div>
+              <p class="btn-text"><b>Accedi con google</b></p>
+            </div>
+            </a>
+          </div>                                
+        </div> 
     `;
     
     //!!importante (riga 108) creo bottone effettua registrazione per ripassare alla vista della registrazione nella form
@@ -153,7 +170,7 @@ function mostra_login(e)
 function mostra_recuperapassword(e) 
 {
     var item = document.getElementById("form-login");                   // prendo l'elemento form
-    item.setAttribute("name", "recupera-password");                     // cambio il nome della form
+    item.setAttribute("name", "recupera-password");                // cambio il nome della form
     item.setAttribute("action", "#");
     item.setAttribute("onsubmit", "inviamail();"); 
     //cambio html con i campi del login
