@@ -166,7 +166,7 @@ function mostra_login(e)
     var nav_button = document.getElementById("nav-button")
     nav_button.innerHTML = "Login";
 }
-
+//funzione che mostra il form di recupera password
 function mostra_recuperapassword(e) 
 {
     var item = document.getElementById("form-login");                   // prendo l'elemento form
@@ -212,7 +212,35 @@ function mostra_recuperapassword(e)
     //var nav_button = document.getElementById("nav-button")
     //nav_button.innerHTML = "Login";
 }
-//funzione che assegna gli eventi per cambiamento form login-registrazione
+//funzione che mostra form di conferma logout
+function mostra_confermalogout(e)
+{
+    var item = document.getElementById("form-login");             // prendo l'elemento form
+    item.setAttribute("name", "conferma-logout");                // cambio il nome della form
+    item.setAttribute("action", "#");
+    item.setAttribute("onsubmit","eliminaStorage();"); 
+    //cambio html con i campi del login
+    item.innerHTML = `
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <h4>Confermi di volere effettuare il logout?</h4>
+            </div>
+        </div>
+    `;
+
+    //cambio testo nel tasto submit della form
+    var button = document.getElementById("form-submit");
+    button.innerHTML = "Confermo";
+
+    //cambio testo del titolo del modal
+    var title = document.getElementById("loginModalLabel");
+    title.innerHTML = "Conferma logout";
+
+    //cambio testo del bottone della navbar
+    //var nav_button = document.getElementById("nav-button")
+    //nav_button.innerHTML = "Login";
+}
+
 
 function mostrapassword(){  /*Funzione per mostrare o nascondere la password tramite occhiolino*/
     var x=document.getElementById("password");
@@ -231,7 +259,7 @@ function mostrapassword(){  /*Funzione per mostrare o nascondere la password tra
 
 }
 
-function mostraconfermapassword(){  /*Funzione per mostrare o nascondere la password tramite occhiolino*/
+function mostraconfermapassword(){  /*Funzione per mostrare o nascondere la conferma password tramite occhiolino*/
     var x=document.getElementById("confpassword");
     var y=document.getElementById("hide11");
     var z=document.getElementById("hide22");
@@ -248,10 +276,12 @@ function mostraconfermapassword(){  /*Funzione per mostrare o nascondere la pass
 
 }
 
-function inviamail(){
+function inviamail(){ //funzione per mostrare messaggio dell'invio della mail per recupera password
     var x=document.getElementById("emailinviata");  
     x.style.display="block";
 }
+
+//funzione che assegna gli eventi per cambiamento form login-registrazione
 function assegnaEvent()
  {
 
@@ -473,8 +503,7 @@ function controllaLogin() {
 //N.B il tasto ha per default questa funzione associata su "onClick" ma viene eseguita solo se il testo è "Logout"
 function logout(){
     if (document.getElementById("nav-button").innerHTML == 'Logout'){    //se il testo del bottone è "logout"
-        eliminaStorage();                                                //cancella sessione
-        window.location.href = "index.html";                             //reindirizza alla home
+        mostra_confermalogout(); //mostro il messaggio conferma logout
     }
 }
 
@@ -491,6 +520,7 @@ function inizializzaStorage() {
 //cancella il localStorage
 function eliminaStorage() {
     localStorage.session = "[]";
+    window.location.href = "index.html";                             //reindirizza alla home
 }
 
 //crea la nuova sessione

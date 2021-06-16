@@ -63,10 +63,44 @@
             </ul>
             <!-- Tasto Logout -->
             <div class="text-center">
-                <button class="btn btn-outline-danger my-2 my-sm-0" onclick="logout();">Logout</button>
+                <button class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target="#logoutModal">Logout</button>
             </div>
         </div>
     </nav>
+
+    <!-- Logout Modal(modal = pop up) -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                 <!-- titolo del form-->
+                <div class="modal-header">
+                    <h5 class="modal-title modal-lg" id="loginModalLabel">Conferma logout</h5>
+                   <!-- bottone per chiuedere-->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span> <!-- area hidden cambia in false quando premo log in-->
+                    </button>
+                </div>
+                <!-- le text area nel corpo-->
+                <div class="modal-body" id="boxform">
+                    <!-- la form manda i dati al file php che comunica con il DB-->
+                    <div id="conferma-logout" class="needs-validation" name="conferma-logout">
+                        <!-- Form di Login (per default) poi cambiato da funzioni javascript tramite id-->
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                                <h4>Confermi di volere effettuare il logout?</h4>
+                            </div>
+                        </div> 
+                    </div>    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                    <button id="form-submit" name="form-submit-button" type="sbmit" class="btn btn-primary" onclick="logout();">Confermo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!--BREADCRUMB-->
     <div class="container-fluid">
         <div class="row"><h6 style="margin-left: 5px;"><a href="../HomeIntrattenimento.html">Intrattenimento</h6></a> <h6 style="color:#0000EE">></h6> <h6><a href="#">Minigiochi</a></h6></div>
