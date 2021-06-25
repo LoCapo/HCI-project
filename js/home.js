@@ -458,7 +458,6 @@ function controllaLogin() {
     inizializzaStorage();
     var nav_button = document.getElementById("nav-button")  //bottone Login della navbar
     var url = new URL(window.location.href);                //oggetto URL, contiene l'url corrente della home
-    console.log(url);
 
     if(getSession() != null){                               //se la sessione esiste (getSession controlla che il local storage non sia vuoto)
         nav_button.classList.remove("btn-outline-success"); //tolgo grafica verde dal bottone
@@ -570,31 +569,3 @@ function getSession() {
     return sessione.session_id;
 }
 
-function MessaggioLogin(){  //ogni modal ha tre testi (titolo del modal, titolo dell'evento accaduto, testo aggiuntivo)
-    var modal = document.getElementById("messageModal");
-    var title = "Prima il login!";
-    var body1 = "Per usufruire del nostro sito è necessaria l'autenticazione, effettua il login o la registrazione!";
-    var body2 = "";
-    //creo html del modal, inserendo i tre messaggi
-    modal.innerHTML =`
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 class="modal-title modal-lg" id="loginModalLabel">`+ title +`</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <h3>` + body1 + `</h3>
-            <h5>`+ body2 +`</h5>
-
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-        </div>
-    </div>
-</div>
-    `
-    $("#messageModal").modal("show");
-}
