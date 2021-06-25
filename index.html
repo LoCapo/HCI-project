@@ -44,14 +44,12 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index/Contattaci.html">Contattaci</a>
-                        </li>
                     </ul>
                     <!-- Tasto Login/Registrazione -->
                     <div class="text-center">
                         <!-- id preso da funzione javascript -->
                         <button id="nav-button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#loginModal" onclick="logout();">Login</button>
+                        <button id="nav-button1" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#RegistrazioneModal">Registrazione</button>
                     </div>
                 </div>
         </nav>
@@ -104,12 +102,6 @@
                                          id="forgot-button">qui</a>!</a>
                                         </div>
                                     </div>    
-                                    <div class="input-group-prepend">
-                                        <!-- Bottone che triggera le funzioni javascript per il cambiamento della form mostra_registrazione-->
-                                        <div>Non hai un account? Effettua la <a href="#"
-                                                id="registr-button">registrazione</a>!</a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <br>
@@ -137,6 +129,91 @@
                 </div>
             </div>
         </div>
+
+        <!-- Registrazione Modal(modal = pop up) -->
+        <div class="modal fade" id="RegistrazioneModal" tabindex="-1" role="dialog" aria-labelledby="RegistrazioneModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                     <!-- titolo del form-->
+                    <div class="modal-header">
+                        <h5 class="modal-title modal-lg" id="loginModalLabel">Form Registrazione</h5>
+                       <!-- bottone per chiuedere-->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span> <!-- area hidden cambia in false quando premo registrazione-->
+                        </button>
+                    </div>
+                    <!-- le text area nel corpo-->
+                    <div class="modal-body" id="boxform1">
+                        <!-- la form manda i dati al file php che comunica con il DB-->
+                        <form id="form-registrazione" action="php/validateRegistrazione.php" method="POST" name="form-registrazione">
+                            <!-- Form di Registrazione-->
+                            <div class="form-row align-items-center">
+                                <div class="col-auto">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Name</div>
+                                        </div>
+                                        <input type="text" class="form-control" name="name" placeholder="Alice" required>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Surname</div>
+                                        </div>
+                                        <input type="text" class="form-control" name="surname" placeholder="Rossi" required>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">e-mail</div>
+                                        </div>
+                                        <input type="email" class="form-control" name="email" placeholder="alice@example.com" required>
+                                    </div>
+                                </div>
+                                <div class="alert alert-primary">
+                                 Inserire una password con almeno 5 caratteri di cui una lettera maiuscola, una minuscola, un numero e un simbolo.
+                                </div>
+                                <div class="col-auto">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Password</div>
+                                        </div>
+                                        <input type="password" id="password1" class="form-control" size="20" name="password" placeholder="La tua password" minlength="5"
+                                        onkeyup="validaPsw1();" required>
+                                        <span class="eye" onclick="mostrapassword1()">
+                                         <i id="hide10" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye "></i>
+                                         <i id="hide20" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye-slash"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div id="password-ok" style="margin-bottom:10px;" class="badge"></div>
+                                <div class="col-auto">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Confirm password</div>
+                                        </div>
+                                        <input type="password" id="confpassword" class="form-control" name="confirm" size="20" placeholder="Conferma password"
+                                        onkeyup="validaPsw2();" required>
+                                        <span class="eye" onclick="mostraconfermapassword()">
+                                         <i id="hide11" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye "></i>
+                                         <i id="hide22" style="margin-top: 10px; margin-left: 10px;" class="far fa-eye-slash"></i>
+                                      </span> 
+                                    </div>
+                                </div>
+                                <div id="password-match" class="alert" role="alert"></div>
+                            </div>                          
+                        </form>    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                        <button id="form-submit1" name="form-submit-button" type="sbmit" class="btn btn-primary" form="form-registrazione">Registrazione</button>
+                    </div>
+                </div>
+            </div>
+        </div>        
 
 
         <!-- Message Modal riempito dinamicamente quando c'è un errore con innerHtml -->

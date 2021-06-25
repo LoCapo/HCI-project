@@ -94,11 +94,12 @@ function mostra_registrazione(e)
 //funzione chiamata quando si clicca il link "login" dentro al form, cambia l'HTML della form togliendo campi
 function mostra_login(e) 
 {
-    var item = document.getElementById("form-login");                   // prendo l'elemento form
-    item.setAttribute("name", "form-login");                            // cambio il nome della form
-    item.setAttribute("action", "php/validateLogin.php");               // cambio il file php da eseguire dopo il submit della form
+    var item = document.getElementById("boxform");                   // prendo l'elemento form
+    //item.setAttribute("name", "form-login");                            // cambio il nome della form
+    //item.setAttribute("action", "php/validateLogin.php");               // cambio il file php da eseguire dopo il submit della form
     //cambio html con i campi del login
     item.innerHTML = `
+    <form id="form-login" class="needs-validation" action="php/validateLogin.php" method="POST" name="form-login" onsubmit="">
         <div class="form-row align-items-center">
             <div class="col-auto">
                 <div class="input-group mb-2">
@@ -125,9 +126,6 @@ function mostra_login(e)
                     <div class="input-group-prepend">
                       <div>Password dimenticata? Clicca <a href="#" id="forgot-button">qui</a>!</a></div>
                     </div> 
-                    <div class="input-group-prepend">
-                        <div>Non hai un account? Effettua la <a href="#" id="registr-button">registrazione</a>!</a></div>
-                    </div>
             </div>
         </div>
        </div>
@@ -147,6 +145,7 @@ function mostra_login(e)
             </a>
           </div>                                
         </div> 
+      </form>  
     `;
     
     //!!importante (riga 108) creo bottone effettua registrazione per ripassare alla vista della registrazione nella form
@@ -169,13 +168,14 @@ function mostra_login(e)
 //funzione che mostra il form di recupera password
 function mostra_recuperapassword(e) 
 {
-    var item = document.getElementById("form-login");                   // prendo l'elemento form
-    item.setAttribute("name", "recupera-password");                // cambio il nome della form
-    item.setAttribute("action", "#");
-    item.setAttribute("onsubmit", "inviamail();"); 
+    var item = document.getElementById("boxform");                   // prendo l'elemento boxform
+    //item.setAttribute("name", "recupera-password");                // cambio il nome della form
+    //item.setAttribute("action", "#");
+    //item.setAttribute("onsubmit", "inviamail();"); 
     //cambio html con i campi del login
     item.innerHTML = `
         <div class="alert alert-primary">Ti invieremo una mail con le istruzioni per recuperare la password.</div>
+        <div>
         <div class="form-row align-items-center">
             <div class="col-auto">
                 <div class="input-group mb-2">
@@ -189,9 +189,10 @@ function mostra_recuperapassword(e)
             <div class="input-group mb-1 mt-3"> 
              <div class="input-group-prepend">
                 <!-- Bottone che triggera le funzioni javascript per il cambiamento della form mostra_registrazione-->
-                <div>Non hai un account? Effettua la <a href="#" id="registr-button">registrazione</a>!</a></div>
+                <div>Hai un account? Effettua il <a href="#" id="login-button">login</a>!</a></div>
              </div>
            </div>
+         </div>
         </div>
     `;
     
@@ -202,6 +203,7 @@ function mostra_recuperapassword(e)
 
     //cambio testo nel tasto submit della form
     var button = document.getElementById("form-submit");
+    button.setAttribute("onclick", "inviamail();");
     button.innerHTML = "Invia";
 
     //cambio testo del titolo del modal
@@ -246,6 +248,23 @@ function mostrapassword(){  /*Funzione per mostrare o nascondere la password tra
     var x=document.getElementById("password");
     var y=document.getElementById("hide1");
     var z=document.getElementById("hide2");
+    if(x.type==='password'){
+      x.type="text";
+      y.style.display="none";
+      z.style.display="block";
+    }
+    else{
+      x.type="password";
+      y.style.display="block";
+      z.style.display="none";
+    }
+
+}
+
+function mostrapassword1(){  /*Funzione per mostrare o nascondere la password tramite occhiolino*/
+    var x=document.getElementById("password1");
+    var y=document.getElementById("hide10");
+    var z=document.getElementById("hide20");
     if(x.type==='password'){
       x.type="text";
       y.style.display="none";
@@ -304,7 +323,7 @@ function assegnaEvent()
 
 //funzione che assegna il grado di sicurezza della password inserita, assegnato al campo password del form registrazione
 function validaPsw1(){  //attivata onKeyUp
-    var psw = document.getElementById("form-login").password.value;     //testo dell'input password del form
+    var psw = document.getElementById("form-registrazione").password.value;     //testo dell'input password del form
         var badge = document.getElementById("password-ok");             //elemento "badge" di bootstrap, per segnalazione password sicura ecc
                                                                         // di default il badge viene creato senza la classe grafica (quella che da il colore) e senza testo (invisibile)
         var secuity = 0; //grado di sicurezza della password
@@ -424,7 +443,7 @@ function changeModal(title, body1, body2){  //ogni modal ha tre testi (titolo de
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
                 </div>
             </div>
         </div>
@@ -444,6 +463,7 @@ function controllaLogin() {
         nav_button.classList.remove("btn-outline-success"); //tolgo grafica verde dal bottone
         nav_button.classList.add("btn-outline-danger");     //aggiungo grafica rossa al bottone
         nav_button.innerHTML = "Logout";                    //aggiungo testo logout
+        document.getElementById("nav-button1").style.display="none"; //nascondo bottone registrazione
 
         //url.searchParams.get restituisce il valore del parametro passato nella url
         if(url.searchParams.get("registrazione")){  // se la sessione esiste ed il file php segnala l'avvenuta registrazione
@@ -531,7 +551,7 @@ function salvaStorage(id) { //per motivi di sicurezza, andrebbe tolta da questo 
 
     var storage = JSON.parse(localStorage.session);
     storage[0] = obj; //se gia esistesse la sessione la sessione, la sovrascrivo (impossibile)
-    localStorage.session = JSON.stringify(storage); //salvo nel localStorage il numero di sessione                                       
+    localStorage.session = JSON.stringify(storage); //salvo nel localStorage il numero di sessione                                      
     return true;
 }
 
