@@ -52,6 +52,8 @@ small{
 .slidecontainer {
     width: 100%; 
     margin-top:1vh;
+
+    
   }
   
   /*slider*/
@@ -103,6 +105,28 @@ small{
     height: 100%;
     overflow: auto;
     opacity:0.85;
+    
+  }
+
+  input[type='radio'], label{   
+    vertical-align: baseline;
+    padding: 10px;
+    margin: 10px;
+
+ }
+
+  
+
+  input[type='radio']:before {
+    content:'';
+    display:block;
+    width:60%;
+    height:60%;
+    margin: 20% auto;    
+    border-radius:50%;    
+  }
+  input[type='radio']:checked:before {
+    background:rgb(248, 100, 80);
   }
 
   /*in questo modo gli stili gia esistenti di elenchi puntati sono tolti(senza questo verrebbe il classico elenco con il pallino a sinistra di tutte le voci*/
@@ -113,14 +137,30 @@ small{
   }
 /*distanza tra il primo e il secondo filtro*/
 .filtra-radio{
-    margin-top:15vh;
+    margin-top:5px;
+    text-align: center;
 }
 
-/*sposto di pochissimo gli elementi radio del filtra per categoria*/
-li {
-    margin-left:5px;
-}
+#linkcategoria:hover {
+    color: rgb(248, 100, 80);
+    font-size: larger;
+  }
 
+#linkcategoria:link, a:visited {
+
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-decoration: none;
+
+  }
+  
+  .boxed {
+    border: 1px solid green ;
+    border-radius: 5px;
+    width: 110px;
+    background-color: #4CAF50;
+    font-size: large;
+  }
 
 /*INIZIO CSS @MEDIA*/ 
 /*ridimensionamento sidebar*/

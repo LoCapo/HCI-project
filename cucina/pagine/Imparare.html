@@ -110,33 +110,23 @@
       <div class="row"><h6 style="margin-left: 5px;"><a href="../HomeCucina.html">Cucina</h6></a> <h6 style="color:#0000EE">></h6> <h6><a href="#">Imparare</a></h6></div>
     </div>    
 
-    <div class="slidecontainer"> <!-- prima riga con il filtra per prezzo-->
-      <h2>Filtra per prezzo</h2>
-      <input type="range" min="0" max="" value="100" class="slider" id="myRange"> <!-- input type=range per fare lo slider. nel css uso appearance per togliere lo stile base e aggiungere il mio-->
-      <span>Prezzo massimo: </span><span id="demo"></span>
+    <div class="slidecontainer" > <!-- prima riga con il filtra per prezzo-->
+      <h2 style="text-align: center;">Filtra per prezzo</h2>
+        <input type="radio"  name="costo" value=0 > Gratis <br>
+        <input type="radio"  name="costo" value=30> 1-30€ <br>
+        <input type="radio"  name="costo" value=60> 31-60€<br>
+        <input type="radio"  name="costo" value=90> 61-90€<br>
+        <input type="radio"  name="costo" value=">90" checked="checked"> >90<br>
+      <!--<input type="range" min="0" max="" value="100" class="slider" id="myRange"> <!-- input type=range per fare lo slider. nel css uso appearance per togliere lo stile base e aggiungere il mio-->
+      <span ><b >Prezzo massimo:</b> </span><span id="demo"></span>
     </div>
 
-    
+  
     <div class="filtra-radio" id="filtro"><!--seconda riga con il filtra radio-->
-      <h2>Filtra per categoria</h2>
-      <ul id="myUL">
-        <li>
-          <input type="radio" name="tipo" value="nessuno" id="nessuno" checked>
-          <label for="nessuno">Tutte</label>
-        </li>
-        <li>
-          <input type="radio" name="tipo" value="libro" id="libro">
-          <label for="libro">Libri</label>
-        </li>
-        <li>
-          <input type="radio" name="tipo" value="tutorial" id="tutorial">
-          <label for="tutorial">Tutorial</label>
-        </li>
-        <li>
-          <input type="radio" name="tipo" value="corso" id="corso">
-          <label for="corso">Corsi</label>
-        </li>
-      </ul> 
+      <h2>Scegli categoria</h2>
+          <a href="#Libri" id="linkcategoria"><h4>Libri</h4></a>
+          <a href="#Tutorial" id="linkcategoria"><h4>Tutorial</h4></a>
+          <a href="#Corsi" id="linkcategoria"><h4>Corsi</h4></a>
     </div>
   </div>
 
@@ -145,6 +135,10 @@
 
   <div class="contenitore-cards" id="contenitore">  <!--id contenitore al container delle carte per poterle individuare nel javascript-->
     <!--Prima carta   // class libro/tutorial/corso per filtro per categoria-->
+    <div><a name="Libri"></a><br><br></div>
+    <div class="boxed">
+    <span ><b >Risultati:</b> </span><span id="demo2"></span>
+  </div>
     <div class="card mb-3 libro" id="card0"> <!-- ogni card ha un id diverso-->
       <div class="row no-gutters">
         <div class="col-md-4">
@@ -168,6 +162,7 @@
         </div>
       </div>
     </div>
+    
     <!--Seconda carta-->
     <div class="card mb-3 libro" id="card1">
       <div class="row no-gutters">
@@ -224,7 +219,31 @@
         </div>
       </div>
     </div>
-    <!--Quarta carta-->
+        <!--Quarta carta-->
+        <div class="card mb-3 libro" id="card8">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+             <a href="https://www.amazon.it/Guida-grande-cucina-Auguste-Escoffier/dp/8899898669" target="_blank"> 
+              <img src="../../assets/img/cucina/ImparareCard9.jpg" class="card-img" alt="...">
+            </a>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h1 class="card-title">Guida alla grande cucina</h1>
+                <small class="text-muted">Libro - </small><small class="text-muted prezzo">45.6</small><small
+                  class="text-muted">€</small>
+                <p class="card-text stile-testo">In questo manuale troverete tanta cultura, anche in questo caso non proprio accessibile a tutti. 
+                  Infatti, questo libro raccoglie insegnamenti dell’alta cucina, trasmessi in una serie di ricette della tradizione. Si tratta 
+                  di una particolare chicca da avere nella libreria per coloro che sono già avanti con la cucina e che puntano a raffinare le 
+                  proprie abilità da cuoco. La soddisfazione nel realizzare i piatti presenti nel libro, ripagherà l’impegno nel realizzare 
+                  queste spesso difficilissime ricette.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!--Quinta carta-->
+    <div><a name="Tutorial"></a><br></div>
     <div class="card mb-3 tutorial" id="card3">
       <div class="row no-gutters">
         <div class="col-md-4">
@@ -249,53 +268,8 @@
         </div>
       </div>
     </div>
-    <!--Quinta carta-->
-    <div class="card mb-3 corso" id="card4">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <a href="https://www.gamberorosso.it/" target="_blank">
-          <img src="../../assets/img/cucina/ImparareCard5.jpg" class="card-img" alt="...">
-        </a>
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h1 class="card-title">Gambero Rosso - La pizza</h1>
-            <small class="text-muted">Corso - </small><small class="text-muted prezzo">120</small><small
-              class="text-muted">€</small>
-            <p class="card-text stile-testo">Gambero Rosso è un sito Web che offre un vero e proprio store con corsi 
-              di cucina per appassionati. Nella sezione Corsi è possibile trovare diverse cose interessanti: corsi 
-              per professionisti, corsi per appassionati, eventi, libri e guide e un abbonamento alla rivista 
-              omonima per un anno. In questo caso il corso vi svelerà i segreti che vi permetteranno di sfornare una 
-              pizza perfetta sia dal punto di vista della forma che da quello del sapore. 
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <!--Sesta carta-->
-    <div class="card mb-3 corso" id="card5">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <a href="https://lifelearning.it/" target="_blank">
-          <img src="../../assets/img/cucina/ImparareCard6.gif" class="card-img" alt="...">
-          </a>
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h1 class="card-title">Life Learning</h1>
-            <small class="text-muted">Corso - </small><small class="text-muted prezzo">49</small><small
-              class="text-muted">€</small>
-            <p class="card-text stile-testo"> Si tratta di un sito di corsi online all’interno del quale è possibile 
-              trovare anche corsi per imparare a cucinare.Nel sito è possibile trovare tantissimi corsi online i quali 
-              sono corredati da video in grado di spiegare come cimentarsi nella cottura di carni, pesce, torte, pizza, 
-              verdure e tanto altro. Tutti i corsi online sono a pagamento ed al termine della fruizione viene rilasciato 
-              un certificato finale.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--Settima carta-->
     <div class="card mb-3 tutorial" id="card6">
       <div class="row no-gutters">
         <div class="col-md-4">
@@ -318,7 +292,7 @@
         </div>
       </div>
     </div>
-    <!--Ottava carta-->
+    <!--Settima carta-->
     <div class="card mb-3 tutorial" id="card7">
       <div class="row no-gutters">
         <div class="col-md-4">
@@ -340,29 +314,56 @@
         </div>
       </div>
     </div>
-    <!--Nona carta-->
-    <div class="card mb-3 libro" id="card8">
+    <div><a name="Corsi"></a><br></div>
+    <!--Ottava carta-->
+    <div class="card mb-3 corso" id="card4">
       <div class="row no-gutters">
         <div class="col-md-4">
-         <a href="https://www.amazon.it/Guida-grande-cucina-Auguste-Escoffier/dp/8899898669" target="_blank"> 
-          <img src="../../assets/img/cucina/ImparareCard9.jpg" class="card-img" alt="...">
+          <a href="https://www.gamberorosso.it/" target="_blank">
+          <img src="../../assets/img/cucina/ImparareCard5.jpg" class="card-img" alt="...">
         </a>
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h1 class="card-title">Guida alla grande cucina</h1>
-            <small class="text-muted">Libro - </small><small class="text-muted prezzo">45.6</small><small
+            <h1 class="card-title">Gambero Rosso - La pizza</h1>
+            <small class="text-muted">Corso - </small><small class="text-muted prezzo">120</small><small
               class="text-muted">€</small>
-            <p class="card-text stile-testo">In questo manuale troverete tanta cultura, anche in questo caso non proprio accessibile a tutti. 
-              Infatti, questo libro raccoglie insegnamenti dell’alta cucina, trasmessi in una serie di ricette della tradizione. Si tratta 
-              di una particolare chicca da avere nella libreria per coloro che sono già avanti con la cucina e che puntano a raffinare le 
-              proprie abilità da cuoco. La soddisfazione nel realizzare i piatti presenti nel libro, ripagherà l’impegno nel realizzare 
-              queste spesso difficilissime ricette.
+            <p class="card-text stile-testo">Gambero Rosso è un sito Web che offre un vero e proprio store con corsi 
+              di cucina per appassionati. Nella sezione Corsi è possibile trovare diverse cose interessanti: corsi 
+              per professionisti, corsi per appassionati, eventi, libri e guide e un abbonamento alla rivista 
+              omonima per un anno. In questo caso il corso vi svelerà i segreti che vi permetteranno di sfornare una 
+              pizza perfetta sia dal punto di vista della forma che da quello del sapore. 
             </p>
           </div>
         </div>
       </div>
     </div>
+    <!--Nona carta-->
+    <div class="card mb-3 corso" id="card5">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <a href="https://lifelearning.it/" target="_blank">
+          <img src="../../assets/img/cucina/ImparareCard6.gif" class="card-img" alt="...">
+          </a>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title">Life Learning</h1>
+            <small class="text-muted">Corso - </small><small class="text-muted prezzo">49</small><small
+              class="text-muted">€</small>
+            <p class="card-text stile-testo"> Si tratta di un sito di corsi online all’interno del quale è possibile 
+              trovare anche corsi per imparare a cucinare.Nel sito è possibile trovare tantissimi corsi online i quali 
+              sono corredati da video in grado di spiegare come cimentarsi nella cottura di carni, pesce, torte, pizza, 
+              verdure e tanto altro. Tutti i corsi online sono a pagamento ed al termine della fruizione viene rilasciato 
+              un certificato finale.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+
     <!--Decima carta-->
     <div class="card mb-3 corso" id="card9">
       <div class="row no-gutters">

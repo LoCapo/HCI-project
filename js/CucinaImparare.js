@@ -3,10 +3,9 @@
 /*da effettuare onload del body, assegna l'event handler oninput allo slider e onclick all'elemento radio*/
 function assegnaEventHandler()
 {
-    var slider = document.getElementById("myRange");   /* prendo lo slider dal DOM*/
     var output = document.getElementById("demo");      /* il prezzo che verra visualizzato nel filtro per prezzo*/
     var contenitore=document.getElementById("contenitore"); /*prendo il contenitore che contiene tutte le card*/
-
+    var output2 = document.getElementById("demo2"); 
 
     /*prendo le card del documento e le inserisco in un array in modo che possa recuperarle anche dopo averle rimosse dal DOM!*/
     var cards=document.getElementsByClassName("card"); /*array delle card*/
@@ -26,20 +25,33 @@ function assegnaEventHandler()
         arrayCards[i].accettabilePrezzo=true;
         arrayCards[i].accettabileTipo=true;
     }
-    document.getElementById("myRange").setAttribute("max",prezzomax);   //inserisco il prezzo massimo come attributo "max" dello slider
-    document.getElementById("myRange").setAttribute("value",prezzomax); //inserisco il prezzo massimo come attributo "value" dello slider
-    output.innerHTML = prezzomax +"€"; //Printa valore iniziale dello slider onload del body
 
-    //Aggiunta event handler allo slider
-    slider.oninput = function() {
-        /*se il costo è 0 esce la scritta gratis invece che 0*/
-        if (this.value=="0"){
-            output.innerHTML="Gratis";
-        }
-        /*altrimenti esce il costo*/
-        else {
-            output.innerHTML = this.value + "€"; 
-        }
+    
+    //document.getElementById("costo").setAttribute("max",prezzomax);   //inserisco il prezzo massimo come attributo "max" dello slider
+    //document.getElementById("costo").setAttribute("value",prezzomax); //inserisco il prezzo massimo come attributo "value" dello slider
+    output.innerHTML = 120 +"€"; //Printa valore iniziale dello slider onload del body
+    output2.innerHTML = 11;
+    $('input[type=radio][name="costo"]').change(function() {
+                /*se il costo è 0 esce la scritta gratis invece che 0*/
+                if ($(this).val()=="0"){
+                    output.innerHTML="Gratis";
+                    output2.innerHTML=3;
+                    prezzomax=$(this).val();
+                }
+                /*altrimenti esce il costo*/
+                else {
+                    output.innerHTML = $(this).val() + "€";
+                    if ($(this).val()=="30"){
+                        output2.innerHTML=6;
+                    }else if ($(this).val()=="60"){
+                        output2.innerHTML=8;
+                    }else if ($(this).val()=="90"){
+                        output2.innerHTML=9;
+                    }
+                    else output2.innerHTML=11;
+                }
+                 //per ogni card (anche quelle non più presenti nel DOM)
+
         //per ogni card (anche quelle non più presenti nel DOM)
         for (var i=0;i<arrayCards.length;i++){
             var prezzo=Math.ceil(parseFloat(arrayCards[i].getElementsByClassName("prezzo")[0].innerHTML)); //prezzo card
@@ -62,8 +74,12 @@ function assegnaEventHandler()
             else {
                 arrayCards[i].accettabilePrezzo=true;
             }
-        }      
-    }
+        }   
+        
+    });
+  
+
+
     //Aggiunta event handler all'elemento radio
     var elemRadio=document.getElementsByName("tipo");
     for (var i=0;i<elemRadio.length;i++){
