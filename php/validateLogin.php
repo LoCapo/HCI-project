@@ -17,7 +17,7 @@
 
 <body>
     <?php
-    $dbconn = pg_connect("host=localhost port=5432 dbname=LTW user=postgres password=1234")
+    $dbconn = pg_connect("host=localhost port=5432 dbname=LTW user=postgres password=admin")
         or die('could not connect: ' . pg_last_error());
     if (!(isset($_POST['form-submit-button']))) {
         header('Location: ../index.html');

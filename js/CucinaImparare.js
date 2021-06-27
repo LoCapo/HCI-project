@@ -10,10 +10,18 @@ function assegnaEventHandler()
     /*prendo le card del documento e le inserisco in un array in modo che possa recuperarle anche dopo averle rimosse dal DOM!*/
     var cards=document.getElementsByClassName("card"); /*array delle card*/
     var arrayCards=[]; /*inizializzo l'array di carte che devono essere visualizzate */
+    var indices = []; 
+
+    var divArray = [];
+    divArray[0] = document.getElementById("divLibri");
+    divArray[1] = document.getElementById("divTutorial");
+    divArray[2] = document.getElementById("divCorsi");
+    
 
     var prezzomax=0; /*imposto il prezzo massimo iniziale a zero*/
     for (var i=0;i<cards.length;i++) /*scorro tutte le carte*/
-    {           
+    {          
+        indices[i] = 1; 
         /*Math.ceil ritorna Il più piccolo intero maggiore o uguale al numero passato come parametro.*/
         var prezzoAttuale=parseInt(Math.ceil(cards[i].getElementsByClassName("prezzo")[0].innerHTML));
         /*prezzoAttuale = piu piccolo numero intero maggiore o uguale al prezzo della carta attuale*/
@@ -29,96 +37,73 @@ function assegnaEventHandler()
     
     //document.getElementById("costo").setAttribute("max",prezzomax);   //inserisco il prezzo massimo come attributo "max" dello slider
     //document.getElementById("costo").setAttribute("value",prezzomax); //inserisco il prezzo massimo come attributo "value" dello slider
-    output.innerHTML = 120 +"€"; //Printa valore iniziale dello slider onload del body
+    //output.innerHTML = 120 +"€"; //Printa valore iniziale dello slider onload del body
     output2.innerHTML = 11;
     $('input[type=radio][name="costo"]').change(function() {
-                /*se il costo è 0 esce la scritta gratis invece che 0*/
-                if ($(this).val()=="0"){
-                    output.innerHTML="Gratis";
-                    output2.innerHTML=3;
-                    prezzomax=$(this).val();
+        var costo1 = this.value;
+        if (costo1 == "max") {
+            contenitore.removeChild(divArray[0]);
+            contenitore.removeChild(divArray[1]);
+            contenitore.removeChild(divArray[2]);
+            for (var i = 0; i < indices.length; i++) {
+                if (indices[i] == 1) {
+                    indices[i] = 0;
+                    contenitore.removeChild(arrayCards[i]);
                 }
-                /*altrimenti esce il costo*/
+            }
+            for (var i = 0; i < arrayCards.length; i++) {
+                if (i==0){
+                    contenitore.appendChild(divArray[0]);
+                }
+                else if (i==4){
+                    contenitore.appendChild(divArray[1]);
+                }
+                else if (i == 7){
+                    contenitore.appendChild(divArray[2]);
+                }
+                contenitore.appendChild(arrayCards[i]);
+                indices[i] = 1;
+            }
+        }
+        else{
+            costo1 = Math.ceil(parseFloat(costo1));
+            var costo2;
+            if (costo1 == 0) {
+                costo2 = 0;
+            }
+            else if (costo1 == 1) {
+                costo2 = 30;
+            }
+            else if (costo1 == 31) {
+                costo2 = 60;
+            }
+            else if (costo1 == 61) {
+                costo2 = 90;
+            }
+            else {
+                costo2 = 9999;
+            }
+            for (var i = 0; i < arrayCards.length; i++) {
+                var prezzo = Math.ceil(parseFloat(arrayCards[i].getElementsByClassName("prezzo")[0].innerHTML)); //prezzo card
+                if ((prezzo < costo1 || prezzo > costo2) && (!(document.getElementById("card" + i) == null))) {
+                    contenitore.removeChild(arrayCards[i]);  //rimuovi card
+                    indices[i] = 0;
+                    arrayCards[i].accettabilePrezzo = false;
+                }
+
+                else if (prezzo >= costo1 && prezzo <= costo2 && (document.getElementById("card" + i) == null) && arrayCards[i].accettabileTipo == true) {
+                    contenitore.appendChild(arrayCards[i]);  //aggiungi card
+                    indices[i] = 1;
+                    arrayCards[i].accettabilePrezzo = true;
+                }
+                else if (prezzo < costo1 || prezzo > costo2) {
+                    arrayCards[i].accettabilePrezzo = false;
+                }
                 else {
-                    output.innerHTML = $(this).val() + "€";
-                    if ($(this).val()=="30"){
-                        output2.innerHTML=6;
-                    }else if ($(this).val()=="60"){
-                        output2.innerHTML=8;
-                    }else if ($(this).val()=="90"){
-                        output2.innerHTML=9;
-                    }
-                    else output2.innerHTML=11;
+                    arrayCards[i].accettabilePrezzo = true;
                 }
-                 //per ogni card (anche quelle non più presenti nel DOM)
-
-        //per ogni card (anche quelle non più presenti nel DOM)
-        for (var i=0;i<arrayCards.length;i++){
-            var prezzo=Math.ceil(parseFloat(arrayCards[i].getElementsByClassName("prezzo")[0].innerHTML)); //prezzo card
-            //se il prezzo massimo è minore del prezzo della card e la card è presente nel DOM
-            if (this.value < prezzo && (!(document.getElementById("card"+i)==null))){ 
-                contenitore.removeChild(arrayCards[i]);  //rimuovi card
-                arrayCards[i].accettabilePrezzo=false;
             }
-            /*se il prezzo massimo è maggiore o uguale al prezzo della card,
-            la card non è presente nel DOM, ed il filtro per categoria non esclude questa card*/
-            else if (this.value >= prezzo && (document.getElementById("card"+i)==null) && arrayCards[i].accettabileTipo==true){ 
-                contenitore.appendChild(arrayCards[i]);  //aggiungi card
-                arrayCards[i].accettabilePrezzo=true;
-            }
-            /*altrimenti semplicemente inserisco la proprietà accettabilePrezzo=false/true alla card. 
-            ATTENZIONE: questa proprietà viene settata anche negli if sopra a questo perchè è fondamentale per capire se una carta va riaggiunta o meno al DOM nel filtra per categoria*/
-            else if (this.value < prezzo){
-                arrayCards[i].accettabilePrezzo=false;
-            }
-            else {
-                arrayCards[i].accettabilePrezzo=true;
-            }
-        }   
-        
+        }
+        output2.innerHTML = document.getElementsByClassName("card").length;
     });
-  
-
-
-    //Aggiunta event handler all'elemento radio
-    var elemRadio=document.getElementsByName("tipo");
-    for (var i=0;i<elemRadio.length;i++){
-        elemRadio[i].onclick=function(){
-            var tipo=this.value;
-            /*se tipo==nessuno setto la proprietà accettabileTipo=true a tutte le card.
-            Inoltre inserisco quelle che hanno un prezzo < del prezzo massimo attualmente selezionato (vedi proprietà accettabilePrezzo)
-            e che non sono già presenti nel DOM.*/
-            if (tipo == "nessuno"){
-                for(i=0;i<arrayCards.length;i++){
-                    arrayCards[i].accettabileTipo=true;
-                    if (arrayCards[i].accettabilePrezzo==true && document.getElementById("card"+i)==null){
-                        contenitore.appendChild(arrayCards[i]);
-                    }
-                }
-            }
-            /*altrimenti setto la proprietà accettabileTipo a seconda del tipo delle diverse carte 
-            e inserisco le carte che possono essere aggiunte e tolgo quelle che devono essere tolte
-            ricordandomi di controllare anche la proprietà accettabilePrezzo*/
-            else {
-                for (var i=0;i<arrayCards.length;i++){
-                    if (arrayCards[i].getAttribute("class").includes(tipo) && arrayCards[i].accettabilePrezzo==true && document.getElementById("card"+i)==null){
-                        arrayCards[i].accettabileTipo=true;
-                        contenitore.appendChild(arrayCards[i]);
-                    }
-                    else if (!arrayCards[i].getAttribute("class").includes(tipo) && !(document.getElementById("card"+i)==null)){
-                        arrayCards[i].accettabileTipo=false;
-                        contenitore.removeChild(arrayCards[i]);
-                    }
-                    else if (arrayCards[i].getAttribute("class").includes(tipo)){
-                        arrayCards[i].accettabileTipo=true;
-                    }
-                    else {
-                        arrayCards[i].accettabileTipo=false;
-                    }
-                }
-            }
-        };
-    }
 }
-
-

@@ -155,10 +155,12 @@ small{
   }
   
   .boxed {
-    border: 1px solid green ;
+    /*border: 1px solid green ;*/
+    border: 1px solid black;
     border-radius: 5px;
     width: 110px;
-    background-color: #4CAF50;
+    /*background-color: #4CAF50;*/
+    background-color: white;
     font-size: large;
   }
 

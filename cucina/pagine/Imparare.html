@@ -113,12 +113,13 @@
     <div class="slidecontainer" > <!-- prima riga con il filtra per prezzo-->
       <h2 style="text-align: center;">Filtra per prezzo</h2>
         <input type="radio"  name="costo" value=0 > Gratis <br>
-        <input type="radio"  name="costo" value=30> 1-30€ <br>
-        <input type="radio"  name="costo" value=60> 31-60€<br>
-        <input type="radio"  name="costo" value=90> 61-90€<br>
-        <input type="radio"  name="costo" value=">90" checked="checked"> >90<br>
-      <!--<input type="range" min="0" max="" value="100" class="slider" id="myRange"> <!-- input type=range per fare lo slider. nel css uso appearance per togliere lo stile base e aggiungere il mio-->
-      <span ><b >Prezzo massimo:</b> </span><span id="demo"></span>
+        <input type="radio"  name="costo" value=1> 1-30€ <br>
+        <input type="radio"  name="costo" value=31> 31-60€<br>
+        <input type="radio"  name="costo" value=61> 61-90€<br>
+        <input type="radio"  name="costo" value=91 > >90<br>
+        <input type="radio" name="costo" value="max" checked="checked">Tutti i risultati<br>
+      <!--<input type="range" min="0" max="" value="100" class="slider" id="myRange">  input type=range per fare lo slider. nel css uso appearance per togliere lo stile base e aggiungere il mio-->
+      <!--<span ><b >Prezzo massimo:</b> </span><span id="demo"></span> -->
     </div>
 
   
@@ -135,7 +136,7 @@
 
   <div class="contenitore-cards" id="contenitore">  <!--id contenitore al container delle carte per poterle individuare nel javascript-->
     <!--Prima carta   // class libro/tutorial/corso per filtro per categoria-->
-    <div><a name="Libri"></a><br><br></div>
+    <div id="divLibri"><a name="Libri"></a><br><br></div>
     <div class="boxed">
     <span ><b >Risultati:</b> </span><span id="demo2"></span>
   </div>
@@ -220,7 +221,7 @@
       </div>
     </div>
         <!--Quarta carta-->
-        <div class="card mb-3 libro" id="card8">
+        <div class="card mb-3 libro" id="card3">
           <div class="row no-gutters">
             <div class="col-md-4">
              <a href="https://www.amazon.it/Guida-grande-cucina-Auguste-Escoffier/dp/8899898669" target="_blank"> 
@@ -243,8 +244,8 @@
           </div>
         </div>
     <!--Quinta carta-->
-    <div><a name="Tutorial"></a><br></div>
-    <div class="card mb-3 tutorial" id="card3">
+    <div id="divTutorial"><a name="Tutorial"></a><br></div>
+    <div class="card mb-3 tutorial" id="card4">
       <div class="row no-gutters">
         <div class="col-md-4">
           <a href="https://www.giallozafferano.it/" target="_blank">
@@ -270,7 +271,7 @@
     </div>
 
     <!--Sesta carta-->
-    <div class="card mb-3 tutorial" id="card6">
+    <div class="card mb-3 tutorial" id="card5">
       <div class="row no-gutters">
         <div class="col-md-4">
           <a href="https://www.youtube.com/user/CookAroundTv" target="_blank">
@@ -293,7 +294,7 @@
       </div>
     </div>
     <!--Settima carta-->
-    <div class="card mb-3 tutorial" id="card7">
+    <div class="card mb-3 tutorial" id="card6">
       <div class="row no-gutters">
         <div class="col-md-4">
           <a href="https://www.youtube.com/user/ChefStefanoBarbato" target="_blank">
@@ -314,9 +315,9 @@
         </div>
       </div>
     </div>
-    <div><a name="Corsi"></a><br></div>
+    <div id="divCorsi"><a name="Corsi"></a><br></div>
     <!--Ottava carta-->
-    <div class="card mb-3 corso" id="card4">
+    <div class="card mb-3 corso" id="card7">
       <div class="row no-gutters">
         <div class="col-md-4">
           <a href="https://www.gamberorosso.it/" target="_blank">
@@ -339,7 +340,7 @@
       </div>
     </div>
     <!--Nona carta-->
-    <div class="card mb-3 corso" id="card5">
+    <div class="card mb-3 corso" id="card8">
       <div class="row no-gutters">
         <div class="col-md-4">
           <a href="https://lifelearning.it/" target="_blank">
