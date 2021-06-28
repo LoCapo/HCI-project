@@ -146,7 +146,7 @@ small{
     font-size: larger;
   }
 
-#linkcategoria:link, a:visited {
+#linkcategoria{
 
     color: rgb(0, 0, 0);
     text-align: center;
