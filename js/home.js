@@ -86,7 +86,7 @@ function mostra_registrazione(e)
     
     // cambio testo sul bottone della navbar
     var nav_button = document.getElementById("nav-button")
-    nav_button.innerHTML = "Registrazione";
+    //nav_button.innerHTML = "Registrazione";
 
 
 }
